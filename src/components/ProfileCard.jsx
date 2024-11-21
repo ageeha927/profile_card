@@ -2,16 +2,17 @@ import { Mail, Github, Instagram, Facebook } from 'lucide-react';
 
 const ProfileCard = ({ profileImage, firstName, lastName, email, socialLinks }) => {
   // Default image as a fallback
-    const defaultImage = "/api/placeholder/150/150";
+    const defaultImage = "placeholder";
 
   // Map social platforms to their respective icons
     const socialIcons = {
     github: Github,
     instagram: Instagram,
-    facebook: Facebook
+    facebook: Facebook,
+    mail: Mail
     };
 
-return (
+  return (
     <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
       {/* Profile Image */}
         <div className="mb-4 relative">
@@ -70,7 +71,8 @@ const ProfileGrid = () => {
         socialLinks: {
         github: "https://github.com/johndoe",
         instagram: "https://instagram.com/johndoe",
-        facebook: "https://facebook.com/johndoe"
+        facebook: "https://facebook.com/johndoe",
+        mail: "johndoe@example.com"
         }
     },
     {

@@ -1,18 +1,12 @@
 import ProfileCard from './components/ProfileCard';
+import Footer from './components/Footer';
 
 function Test() {
     return (
-    <ProfileCard 
-        profileImage="/path/to/image.jpg"
-        firstName="John"
-        lastName="Doe"
-        email="johndoe@example.com"
-        socialLinks={{
-        github: "https://github.com/johndoe",
-        instagram: "https://instagram.com/johndoe",
-        facebook: "https://facebook.com/johndoe"
-        }}
-    />
+        <>
+            <ProfileCard/>
+            <Footer/>
+        </>
     );
 }
 
