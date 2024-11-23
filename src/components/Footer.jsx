@@ -1,117 +1,164 @@
 import { Mail, Github, Instagram, Facebook } from 'lucide-react';
 
-const Footer  = ({logo, aboutUs, companyName, companyURL, socialLinks}) => {
-    // Default logo as a fallback
-    const defaultLogo = "placeholder";
-
+const Footer = ({
+    logo = "placeholder",
+    companyName,
+    socialLinks = {},
+    resources = {
+        title: "RESOURCES",
+        links: [
+        { text: "React", url: "#" },
+        { text: "Tailwind CSS", url: "#" }
+        ]
+    },
+    followUs = {
+        title: "FOLLOW US",
+        links: [
+        { text: "Github", url: "#" },
+        { text: "Discord", url: "#" }
+        ]
+    },
+    legal = {
+        title: "LEGAL",
+        links: [
+        { text: "Privacy Policy", url: "#" },
+        { text: "Terms & Conditions", url: "#" }
+        ]
+    }
+    }) => {
     // Map social platforms to their respective icons
     const socialIcons = {
-    github: Github,
-    instagram: Instagram,
-    facebook: Facebook,
-    mail: Mail
+        github: Github,
+        instagram: Instagram,
+        facebook: Facebook,
+        mail: Mail
     };
 
     return (
-        <footer className="bg-white dark:bg-gray-900">
-            <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-                <div className="md:flex md:justify-between">
-                <div className="mb-6 md:mb-0">
-                    <a href={companyURL} className="flex items-center">
-                        <img
-                            src={logo || defaultLogo}
-                            alt={companyName} 
-                            className="h-8 me-3" 
-                        />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{companyName}</span>
-                    </a>
-                </div>
-                <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                    <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
-                        <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                            <li className="mb-4">
-                                <a href="https://flowbite.com/" className="hover:underline">Flowbite</a>
-                            </li>
-                            <li>
-                                <a href="https://tailwindcss.com/" className="hover:underline">Tailwind CSS</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
-                        <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                            <li className="mb-4">
-                                <a href="https://github.com/themesberg/flowbite" className="hover:underline ">Github</a>
-                            </li>
-                            <li>
-                                <a href="https://discord.gg/4eeurUVvTy" className="hover:underline">Discord</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-                        <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                            <li className="mb-4">
-                                <a href="" className="hover:underline">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a href="" className="hover:underline">Terms &amp; Conditions</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <footer className="max-w-screen-xl mx-auto px-4 py-8">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+            {/* Logo and Company Name */}
+            <div className="flex items-center">
+            <img src={logo} alt={companyName} className="h-6 me-2" />
+            <span className="text-xl font-medium">{companyName}</span>
             </div>
-            <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <div className="sm:flex sm:items-center sm:justify-between">
-                <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024<a href={companyURL} className="hover:underline">{companyName}™</a>. All Rights Reserved.
-                </span>
-                <div className="flex mt-4 sm:justify-center sm:mt-0">
-                {Object.entries(socialLinks).map(([platform, url]) => {
-                    const Icon = socialIcons[platform];
-                    if (!Icon) return null;
 
-                    return (
-                    <>
-                        <a
-                            key={platform}
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
-                        >
-                            <Icon size={24} />
-                        </a>
-                    </>
-                    );
-                })}
-                </div>
+            {/* Navigation Links */}
+            <div className="flex flex-wrap justify-end gap-x-16 gap-y-8">
+            {/* Resources Section */}
+            <div>
+                <h2 className="text-sm font-semibold mb-4">{resources.title}</h2>
+                <ul className="space-y-3">
+                {resources.links.map((link, index) => (
+                    <li key={index}>
+                    <a href={link.url} className="text-gray-600 hover:text-gray-900">
+                        {link.text}
+                    </a>
+                    </li>
+                ))}
+                </ul>
+            </div>
+
+            {/* Follow Us Section */}
+            <div>
+                <h2 className="text-sm font-semibold mb-4">{followUs.title}</h2>
+                <ul className="space-y-3">
+                {followUs.links.map((link, index) => (
+                    <li key={index}>
+                    <a href={link.url} className="text-gray-600 hover:text-gray-900">
+                        {link.text}
+                    </a>
+                    </li>
+                ))}
+                </ul>
+            </div>
+
+            {/* Legal Section */}
+            <div>
+                <h2 className="text-sm font-semibold mb-4">{legal.title}</h2>
+                <ul className="space-y-3">
+                {legal.links.map((link, index) => (
+                    <li key={index}>
+                    <a href={link.url} className="text-gray-600 hover:text-gray-900">
+                        {link.text}
+                    </a>
+                    </li>
+                ))}
+                </ul>
+            </div>
             </div>
         </div>
-    </footer>
+
+        {/* Divider */}
+        <hr className="my-8 border-gray-200" />
+
+        {/* Bottom Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <span className="text-sm text-gray-600">
+            © {new Date().getFullYear()}{companyName}™. All Rights Reserved.
+            </span>
+            <div className="flex gap-6">
+            {Object.entries(socialLinks).map(([platform, url]) => {
+                const Icon = socialIcons[platform];
+                if (!Icon) return null;
+
+                return (
+                <a
+                    key={platform}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-gray-900"
+                >
+                    <Icon size={20} />
+                </a>
+                );
+            })}
+            </div>
+        </div>
+        </footer>
     )
 }
 
 const footerInfo = () => {
     const info = [
         {
-            logo: "placeholder",
-            companyName: "John",
-            companyURL: "johndoeexample.com",
-            socialLinks: {
+        logo: "placeholder",
+        companyName: "John",
+        companyURL: "johndoeexample.com",
+        resources: {
+            title: "RESOURCES",
+            links: [
+            { text: "React", url: "#" },
+            { text: "Tailwind CSS", url: "#" }
+            ]
+        },
+        followUs: {
+            title: "FOLLOW US",
+            links: [
+            { text: "Twitter", url: "#" },
+            { text: "Facebook", url: "#" }
+            ]
+        },
+        legal: {
+            title: "LEGAL",
+            links: [
+            { text: "Privacy Policy", url: "#" },
+            { text: "Terms & Conditions", url: "#" }
+            ]
+        },
+        socialLinks: {
             github: "https://github.com/johndoe",
             instagram: "https://instagram.com/johndoe",
             facebook: "https://facebook.com/johndoe",
-            mail: "johndoe@example.com"
-            }
-        },
+            mail: "mailto:johndoe@example.com"
+        }
+        }
     ]
 
-    return (
-        info.map((infomation, index) => (
-            <Footer key={index} {...infomation} />
-        ))
-    )
+    return info.map((information, index) => (
+        <Footer key={index} {...information} />
+    ))
 }
 
 export default footerInfo;
